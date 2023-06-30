@@ -1,5 +1,7 @@
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
@@ -24,9 +26,16 @@ public class CardDeliveryTest {
         return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 
+
+    @BeforeAll
+    static void setUpAll() {
+        WebDriverManager.chromedriver().setup();
+    }
+
+
     @BeforeEach
     void setup() {
-        Configuration.holdBrowserOpen = true;
+      //  Configuration.holdBrowserOpen = true;
         open("http://localhost:9999/");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-dev-shm-usage");
