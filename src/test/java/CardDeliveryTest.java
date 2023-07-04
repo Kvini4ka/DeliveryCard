@@ -35,7 +35,7 @@ public class CardDeliveryTest {
 
     @BeforeEach
     void setup() {
-      //  Configuration.holdBrowserOpen = true;
+        Configuration.holdBrowserOpen = true;
         open("http://localhost:9999/");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-dev-shm-usage");
