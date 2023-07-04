@@ -20,7 +20,6 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class CardDeliveryTest {
 
-    private WebDriver driver;
 
     private String dateForTest(int days) {
         return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
@@ -37,12 +36,7 @@ public class CardDeliveryTest {
     void setup() {
         Configuration.holdBrowserOpen = true;
         open("http://localhost:9999/");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--headless");
-        driver = new ChromeDriver(options);
-    }
+           }
 
     @Test
     void shouldEnterHappyDate() {
@@ -50,7 +44,7 @@ public class CardDeliveryTest {
 
         $("[data-test-id=city] input").setValue("Омск");
         $("[data-test-id=date] input").sendKeys(Keys.CONTROL + "a");
-        $("[data-test-id=date] input").sendKeys("\b");
+        $("[data-test-id=date] input").sendKeys(Keys.BACK_SPACE);
         $("[data-test-id=date] input").setValue(planningDate);
         $("[data-test-id=name] input").setValue("Катина Катерина");
         $("[data-test-id=phone] input").setValue("+71300000000");
